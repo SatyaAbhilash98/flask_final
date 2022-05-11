@@ -15,7 +15,7 @@ def test_user_balance(application):
         # check balance before update
         assert user.balance == 0
 
-        user.accounts = [Transaction(5000, "CREDIT"), Transaction(1000, "DEBIT")]
+        user.accounts = [Transaction(1,5000, "CREDIT"), Transaction(1,1000, "DEBIT")]
         db.session.commit()
 
         #check balance for credit transaction
