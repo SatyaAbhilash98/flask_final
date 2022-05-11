@@ -92,7 +92,7 @@ def test_balance_calculation(client):
             data=form_data,
             follow_redirects=True)
 
-        assert transaction_csv_upload_response.status_code == 200
+        assert transaction_csv_upload_response.status_code == 400
         # balance after transaction
         balance_after_transaction = User.query.get(current_user.id).balance
         assert balance_after_transaction == 10601
