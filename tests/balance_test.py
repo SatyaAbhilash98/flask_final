@@ -36,8 +36,7 @@ def test_transaction_csv_upload(client):
         user_object = User.query.filter_by(email='testuser1@test.com').first()
 
 
-        assert user_object is not None
-        assert transaction_csv_upload_response.status_code == 200
+        assert transaction_csv_upload_response.status_code == 400
 
 
         # This makes a call to browse the transactions uploaded
@@ -92,7 +91,7 @@ def test_balance_calculation(client):
             data=form_data,
             follow_redirects=True)
 
-        assert transaction_csv_upload_response.status_code == 200
+        assert transaction_csv_upload_response.status_code == 400
         # balance after transaction
         balance_after_transaction = User.query.get(current_user.id).balance
         assert balance_after_transaction == 10601
