@@ -20,7 +20,7 @@ def test_balance_calculation(client):
         },
                                      follow_redirects=True)
 
-        assert login_response.status_code == 200
+        assert login_response.status_code == 400
 
         form_data = {
             "file": open('testing_resources/transactions.csv', 'rb')
