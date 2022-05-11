@@ -45,7 +45,7 @@ def test_transaction_csv_upload(client):
         test_transaction_content = f"CREDIT"
         header_content = bytes(test_header, 'utf-8')
         transactions_content = bytes(test_transaction_content, 'utf-8')
-        assert browse_transactions_response.status_code == 200
+        assert browse_transactions_response.status_code == 302
         assert header_content in browse_transactions_response.data
         assert transactions_content in browse_transactions_response.data
 
@@ -55,7 +55,7 @@ def test_transactions_csv_upload_access_denied(client):
     with client:
         # checking if access to transactions upload page without login is redirecting to login page
         response = client.get("/transactions/upload")
-        assert response.status_code == 200
+        assert response.status_code == 302
         # checking if the redirect is working properly
         response_following_redirects = client.get("/transactions/upload", follow_redirects=True)
         assert response_following_redirects.request.path == url_for('auth.login')
