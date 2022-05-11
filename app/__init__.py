@@ -17,17 +17,17 @@ from app.db.models import User
 from app.error_handlers import error_handlers
 from app.logging_config import log_con, LOGGING_CONFIG
 from app.simple_pages import simple_pages
-from app.songs import songs
-from app.map import map
+from app.transactions import transactions
 from app.db import database
 from flask_cors import CORS
+
 login_manager = flask_login.LoginManager()
 
 
 def create_app():
     """Create and configure an instance of the Flask application."""
     app = Flask(__name__)
-    if  os.environ.get("FLASK_ENV") == "production":
+    if os.environ.get("FLASK_ENV") == "production":
         app.config.from_object("app.config.ProductionConfig")
     elif os.environ.get("FLASK_ENV") == "development":
         app.config.from_object("app.config.DevelopmentConfig")
@@ -49,14 +49,13 @@ def create_app():
     # these load functionality without a web interface
     app.register_blueprint(log_con)
     app.register_blueprint(error_handlers)
-    app.register_blueprint(songs)
-    app.register_blueprint(map)
+    app.register_blueprint(transactions)
     app.context_processor(utility_text_processors)
     # add command function to cli commands
     app.cli.add_command(create_database)
     db.init_app(app)
     api_v1_cors_config = {
-    "methods": ["OPTIONS", "GET", "POST"],
+        "methods": ["OPTIONS", "GET", "POST"],
     }
     CORS(app, resources={"/api/*": api_v1_cors_config})
     # Run once at startup:
@@ -69,5 +68,3 @@ def user_loader(user_id):
         return User.query.get(int(user_id))
     except:
         return None
-        log = logging.getLogger("errors")
-        log.info("Error Occurred")

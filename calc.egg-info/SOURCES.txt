@@ -1,5 +1,6 @@
 setup.py
 app/__init__.py
+app/config.py
 app/run.py
 app/auth/__init__.py
 app/auth/decorators/__init__.py
@@ -8,8 +9,14 @@ app/cli/__init__.py
 app/context_processors/__init__.py
 app/db/__init__.py
 app/db/models/__init__.py
-app/exceptions/__init__.py
+app/error_handlers/__init__.py
+app/logging_config/__init__.py
+app/logging_config/log_formatters/__Init__.py
+app/map/__init__.py
+app/map/forms/__init__.py
 app/simple_pages/__init__.py
+app/songs/__init__.py
+app/songs/forms/__init__.py
 calc.egg-info/PKG-INFO
 calc.egg-info/SOURCES.txt
 calc.egg-info/dependency_links.txt
@@ -18,6 +25,12 @@ calculator/__init__.py
 tests/__init__.py
 tests/auth_test.py
 tests/calculator_test.py
+tests/click_test.py
+tests/config_test.py
 tests/conftest.py
 tests/context_process_test.py
+tests/credentials_dash_tests.py
+tests/csvupload_test.py
+tests/database_test.py
 tests/simple_pages_test.py
+tests/user_test.py

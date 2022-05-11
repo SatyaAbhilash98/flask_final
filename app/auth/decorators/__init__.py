@@ -2,6 +2,7 @@ from functools import wraps
 from flask_login import current_user
 from flask import render_template
 
+
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
