@@ -21,7 +21,7 @@ def test_user_balance(application):
         #check balance for credit transaction
         user_account1 = Transaction.query.filter_by(amount=5000).first()
 
-        if user_account1.trans_type == "CREDIT":
+        if user_account1.transaction_type == "CREDIT":
             balance = balance + user_account1.amount
         else:
             balance = balance - user_account1.amount
@@ -32,7 +32,7 @@ def test_user_balance(application):
 
         # check balance for credit transaction
         user_account2 = Transaction.query.filter_by(amount=1000).first()
-        if user_account2.trans_type == "CREDIT":
+        if user_account2.transaction_type == "CREDIT":
             balance = balance + user_account2.amount
         else:
             balance = balance - user_account2.amount
